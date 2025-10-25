@@ -33,9 +33,12 @@ project(Tarefa22_DualCore C CXX ASM)
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
+# Add the .h files in the lib folder to the include path
+include_directories( ${CMAKE_SOURCE_DIR}/lib ) 
+
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(Tarefa22_DualCore Tarefa22_DualCore.c )
+add_executable(Tarefa22_DualCore Tarefa22_DualCore.c lib/aht20.c lib/bh1750.c lib/ssd1306.c)
 
 pico_set_program_name(Tarefa22_DualCore "Tarefa22_DualCore")
 pico_set_program_version(Tarefa22_DualCore "0.1")
@@ -50,6 +53,7 @@ target_link_libraries(Tarefa22_DualCore
         pico_multicore
         pico_stdlib
         hardware_adc
+        hardware_i2c
         )
 
 # Add the standard include files to the build
